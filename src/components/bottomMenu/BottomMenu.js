@@ -10,7 +10,7 @@ const BottomMenu = ({
 }) => {
   return (
     <div>
-      {!onClickAdd && <button onClick={onClickAdd}>add</button>}
+      {onClickAdd && <button onClick={onClickAdd}>add</button>}
       <button onClick={onClickDelet}>delete</button>
       {closeOrOpen && (
         <button onClick={onClickCloseOrOpen}>{closeOrOpen}</button>
