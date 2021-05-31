@@ -11,9 +11,14 @@ function App() {
           children: [
             {
               children: [
-                { children: [], type: "componet", name: "Button" },
-                { children: [], type: "componet", name: "Input" },
-                { children: [], type: "componet" },
+                {
+                  children: [],
+                  type: "component",
+                  name: "Button",
+                  text: "<button></button>",
+                },
+                { children: [], type: "component", name: "Input" },
+                { children: [], type: "component" },
               ],
             },
           ],

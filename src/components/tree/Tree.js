@@ -5,7 +5,31 @@ import style from "./style";
 
 const changeTree = (setArr, indexes, index, type, value) => {
   const addComponent = (parent, item) => {
-    parent[item].children[index].children.push({ children: [] });
+    const typeId = +prompt("select type item \n1-component, 2-folder, 3-file");
+    const getType = () => {
+      if (typeId === 1) return "component";
+      if (typeId === 2) return "folder";
+      if (typeId === 3) return "file";
+    };
+    parent[item].children[index].children.push({
+      children: [],
+      type: getType(),
+      ...(typeId === 1
+        ? {
+            text: `import React from 'react'
+
+const fdgdfg = () => {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+export default fdgdfg`,
+          }
+        : null),
+    });
   };
   const deleteComponent = (parent, item) => {
     if (indexes.length) {
@@ -86,8 +110,9 @@ const Tree = ({ arr, indexes = [], setArr }) => {
             <div style={style.block} key={index}>
               {[...indexes, index].join(" - ")}
               <BottomMenu
-                name={item?.name || ""}
                 type={item.type}
+                text={item.text}
+                name={item?.name || ""}
                 setName={(value) => changeTreeType(index, "setName", value)()}
                 onClickAdd={changeTreeType(index, "add")}
                 onChangeType={(value) =>
@@ -106,8 +131,9 @@ const Tree = ({ arr, indexes = [], setArr }) => {
           <div key={index} style={style.block}>
             <span>{[...indexes, index].join(" - ")}</span>
             <BottomMenu
-              name={item.name || ""}
               type={item.type}
+              text={item.text}
+              name={item.name || ""}
               closeOrOpen={closeOrOpen}
               setName={(value) => changeTreeType(index, "setName", value)()}
               onClickAdd={changeTreeType(index, "add")}
