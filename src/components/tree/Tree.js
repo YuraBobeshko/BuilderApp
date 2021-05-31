@@ -4,62 +4,71 @@ import { BottomMenu } from "../index";
 import style from "./style";
 
 const changeTree = (setArr, indexes, index, type, value) => {
-  const addLeaf = (sum, item) => {
-    sum[item].children[index].children.push({ children: [] });
+  const addComponent = (parent, item) => {
+    parent[item].children[index].children.push({ children: [] });
   };
-  const deleteLeaf = (sum, item) => {
+  const deleteComponent = (parent, item) => {
     if (indexes.length) {
-      sum[item].children.splice(index, 1);
+      parent[item].children.splice(index, 1);
     } else {
-      sum.splice(index, 1);
+      parent.splice(index, 1);
     }
   };
-  const closeOrOpenLeaf = (sum, item, value) => {
+  const closeOrOpenComponent = (parent, item, value) => {
     if (indexes.length) {
-      sum[item].children[index].isClose = value;
+      parent[item].children[index].isClose = value;
     } else {
-      sum[item].isClose = value;
+      parent[item].isClose = value;
     }
   };
-  const setName = (sum, item) => {
+  const setName = (parent, item) => {
     if (indexes.length) {
-      sum[item].children[index].name = value;
+      parent[item].children[index].name = value;
     } else {
-      sum[index].name = value;
+      parent[index].name = value;
+    }
+  };
+  const setType = (parent, item) => {
+    if (indexes.length) {
+      parent[item].children[index].type = value;
+    } else {
+      parent[index].type = value;
     }
   };
 
   setArr((prevState) => {
     const value = JSON.parse(JSON.stringify(prevState));
 
-    (indexes.length ? indexes : [index]).reduce((sum, item, idx) => {
-      if (!idx) sum = value;
+    (indexes.length ? indexes : [index]).reduce((parent, item, idx) => {
+      if (!idx) parent = value;
 
       if (idx + 1 === indexes.length || !indexes.length) {
         switch (type) {
           case "add":
-            addLeaf(sum, item);
+            addComponent(parent, item);
             break;
           case "delete":
-            deleteLeaf(sum, item);
+            deleteComponent(parent, item);
             break;
           case "close":
-            closeOrOpenLeaf(sum, item, true);
+            closeOrOpenComponent(parent, item, true);
             break;
           case "open":
-            closeOrOpenLeaf(sum, item, false);
+            closeOrOpenComponent(parent, item, false);
             break;
           case "setName":
-            setName(sum, item);
+            setName(parent, item);
             break;
-
+          case "setType":
+            setType(parent, item);
+            break;
           default:
             break;
         }
-        return sum;
+        return parent;
       }
 
-      return sum[item].children;
+      return parent[item].children;
     }, 0);
     return [...value];
   });
@@ -78,10 +87,14 @@ const Tree = ({ arr, indexes = [], setArr }) => {
               {[...indexes, index].join(" - ")}
               <BottomMenu
                 name={item?.name || ""}
-                onClickAdd={changeTreeType(index, "add")}
-                onClickCloseOrOpen={changeTreeType(index, "close")}
-                onClickDelet={changeTreeType(index, "delete")}
+                type={item.type}
                 setName={(value) => changeTreeType(index, "setName", value)()}
+                onClickAdd={changeTreeType(index, "add")}
+                onChangeType={(value) =>
+                  changeTreeType(index, "setType", value)()
+                }
+                onClickDelet={changeTreeType(index, "delete")}
+                onClickCloseOrOpen={changeTreeType(index, "close")}
               />
             </div>
           );
@@ -93,12 +106,16 @@ const Tree = ({ arr, indexes = [], setArr }) => {
           <div key={index} style={style.block}>
             <span>{[...indexes, index].join(" - ")}</span>
             <BottomMenu
-              closeOrOpen={closeOrOpen}
               name={item.name || ""}
-              onClickAdd={changeTreeType(index, "add")}
-              onClickCloseOrOpen={changeTreeType(index, closeOrOpen)}
-              onClickDelet={changeTreeType(index, "delete")}
+              type={item.type}
+              closeOrOpen={closeOrOpen}
               setName={(value) => changeTreeType(index, "setName", value)()}
+              onClickAdd={changeTreeType(index, "add")}
+              onChangeType={(value) =>
+                changeTreeType(index, "setType", value)()
+              }
+              onClickDelet={changeTreeType(index, "delete")}
+              onClickCloseOrOpen={changeTreeType(index, closeOrOpen)}
             />
             {!item.isClose && (
               <Tree

@@ -5,22 +5,24 @@ import { Tree } from "./components";
 function App() {
   const [arr, setArr] = useState([
     {
+      type: "folder",
       children: [
         {
           children: [
             {
               children: [
-                { children: [], name: "13123123" },
-                { children: [] },
-                { children: [] },
+                { children: [], type: "componet", name: "Button" },
+                { children: [], type: "componet", name: "Input" },
+                { children: [], type: "componet" },
               ],
             },
           ],
         },
       ],
     },
-    { children: [{ children: [] }, { children: [] }] },
+    { type: "folder", children: [{ children: [] }, { children: [] }] },
   ]);
+  console.log("arr", arr);
 
   return <Tree arr={arr} setArr={setArr} />;
 }
