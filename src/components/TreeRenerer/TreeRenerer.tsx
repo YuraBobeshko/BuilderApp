@@ -11,12 +11,8 @@ const changeTree = (
   value?: string,
   indexes: number[] = [0]
 ) => {
-  console.log(indexes);
   const addComponent = (parent: ITree, item: number) => {
-    console.log(parent);
-    // const typeId: string | null = prompt(
-    //   "select type item \n1-component, 2-folder, 3-file"
-    // );
+    // const typeId: string | null =
 
     // const getType = () => {
     //   if (!typeId) return;
@@ -83,8 +79,10 @@ const changeTree = (
       parent[index].type = value;
     }
   };
-  // @ts-ignore
+
   setTree((prevState: ITree) => {
+    console.log(prevState.length);
+
     const newState: ITree = JSON.parse(JSON.stringify(prevState));
 
     function findBrach(parent: ITree, iteratin: number) {

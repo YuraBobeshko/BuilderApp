@@ -8,6 +8,6 @@ export interface ITreeItem {
 
 export type ITree = ITreeItem[];
 
-export type ISetTree = (prevState: ITree) => void;
+export type ISetTree = React.Dispatch<React.SetStateAction<ITree>>;
 
 export type ITypes = "component" | "folder" | "file" | "select";

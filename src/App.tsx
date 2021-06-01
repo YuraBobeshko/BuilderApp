@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TreeRenerer, StructureCreator } from "./components";
+import { TreeRenerer, StructureCreator, Uploader } from "./components";
 import { ITree } from "./types";
 
 function App() {
@@ -44,6 +44,7 @@ function App() {
     <>
       <TreeRenerer tree={tree} setTree={setTree} />
       <StructureCreator tree={tree} />
+      <Uploader setTree={setTree} />
     </>
   );
 }

@@ -19,29 +19,26 @@ const StructureCreator = ({ tree }: IStructureCreator) => {
 };
 
 async function download(tree: ITree) {
-  async function openTree(tree: ITree, folder: any) {
+  async function openTree(tree: ITree, folder: JSZip | null) {
     tree.forEach((element: ITreeItem) => {
-      console.log(element.type, element.name);
       if (element.type === "folder") {
         // folder = ;
-        openTree(element.children, folder.folder(element.name || " "));
+        openTree(element.children, folder?.folder(element.name || " ") || null);
         return;
       }
       if (element.type === "file") {
-        folder.file((element.name || " ") + ".js", element.text || "");
+        folder?.file((element.name || " ") + ".js", element.text || "");
       }
       if (element.type === "component") {
-        folder.file((element.name || " ") + ".jsx", element.text || "");
+        folder?.file((element.name || " ") + ".jsx", element.text || "");
       }
       if (element.children.length) openTree(element.children, folder);
     });
     return folder;
   }
   const folders = await openTree(tree, Zip.folder("Yura"));
-  const content = await folders.generateAsync({ type: "blob" });
-  console.log(folders);
-  saveAs(content, "example.zip");
-  console.log();
+  const content = await folders?.generateAsync({ type: "blob" });
+  if (content) saveAs(content, "example.zip");
 }
 
 export default StructureCreator;
