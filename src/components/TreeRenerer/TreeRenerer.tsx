@@ -24,8 +24,10 @@ const changeTree = (
     //   if (+typeId === 2) return "folder";
     //   if (+typeId === 3) return "file";
     // };
-    parent[item]?.children[index]?.children.push({
+    const element: ITreeItem = {
       children: [],
+      name: "",
+      type: "select",
       // type: typeId ?? getType(),
       //       ...(typeId && +typeId === 1
       //         ? {
@@ -42,7 +44,12 @@ const changeTree = (
       // export default fdgdfg`,
       //           }
       //         : null),
-    });
+    };
+    if (indexes.length) {
+      parent[item].children[index].children.push(element);
+    } else {
+      parent[item].children.push(element);
+    }
   };
   const deleteComponent = (parent: ITree, item: number) => {
     if (indexes.length) {
@@ -84,23 +91,23 @@ const changeTree = (
       if (iteratin + 1 === indexes?.length || !indexes?.length) {
         switch (type) {
           case "add":
-            addComponent(parent, indexes[iteratin]);
+            addComponent(parent, indexes[iteratin] || 0);
             break;
           case "delete":
-            deleteComponent(parent, iteratin);
+            deleteComponent(parent, indexes[iteratin] || 0);
             break;
           case "close":
-            closeOrOpenComponent(parent, iteratin, true);
+            closeOrOpenComponent(parent, indexes[iteratin] || 0, true);
             break;
           case "open":
-            closeOrOpenComponent(parent, iteratin, false);
+            closeOrOpenComponent(parent, indexes[iteratin] || 0, false);
             break;
           case "setName":
-            setName(parent, iteratin);
+            setName(parent, indexes[iteratin] || 0);
             break;
           case "setType":
             // @ts-ignore
-            setType(parent, iteratin, value);
+            setType(parent, indexes[iteratin] || 0, value);
             break;
           default:
             break;
