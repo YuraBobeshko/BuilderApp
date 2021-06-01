@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
-import { Tree } from "./components";
+import { TreeRenerer, StructureCreator } from "./components";
+import { ITree } from "./types";
 
 function App() {
-  const [arr, setArr] = useState([
+  const [tree, setTree] = useState<ITree>([
     {
       type: "folder",
       children: [
@@ -27,9 +27,15 @@ function App() {
     },
     { type: "folder", children: [{ children: [] }, { children: [] }] },
   ]);
-  console.log("arr", arr);
 
-  return <Tree arr={arr} setArr={setArr} />;
+  console.log("tree", tree);
+
+  return (
+    <>
+      <TreeRenerer tree={tree} setTree={setTree} />
+      <StructureCreator tree={tree} />
+    </>
+  );
 }
 
 export default App;

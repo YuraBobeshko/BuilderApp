@@ -2,109 +2,132 @@ import React from "react";
 
 import { BottomMenu } from "../index";
 import style from "./style";
+import { ITree, ITypes, ISetTree, ITreeItem } from "../../types";
 
-const changeTree = (setArr, indexes, index, type, value) => {
-  const addComponent = (parent, item) => {
-    const typeId = +prompt("select type item \n1-component, 2-folder, 3-file");
-    const getType = () => {
-      if (typeId === 1) return "component";
-      if (typeId === 2) return "folder";
-      if (typeId === 3) return "file";
-    };
-    parent[item].children[index].children.push({
+const changeTree = (
+  setTree: ISetTree,
+  index: number,
+  type: string,
+  value?: string,
+  indexes: number[] = [0]
+) => {
+  console.log(indexes);
+  const addComponent = (parent: ITree, item: number) => {
+    console.log(parent);
+    // const typeId: string | null = prompt(
+    //   "select type item \n1-component, 2-folder, 3-file"
+    // );
+
+    // const getType = () => {
+    //   if (!typeId) return;
+    //   if (+typeId === 1) return "component";
+    //   if (+typeId === 2) return "folder";
+    //   if (+typeId === 3) return "file";
+    // };
+    parent[item]?.children[index]?.children.push({
       children: [],
-      type: getType(),
-      ...(typeId === 1
-        ? {
-            text: `import React from 'react'
+      // type: typeId ?? getType(),
+      //       ...(typeId && +typeId === 1
+      //         ? {
+      //             text: `import React from 'react'
 
-const fdgdfg = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+      // const fdgdfg = () => {
+      //     return (
+      //         <div>
 
-export default fdgdfg`,
-          }
-        : null),
+      //         </div>
+      //     )
+      // }
+
+      // export default fdgdfg`,
+      //           }
+      //         : null),
     });
   };
-  const deleteComponent = (parent, item) => {
+  const deleteComponent = (parent: ITree, item: number) => {
     if (indexes.length) {
       parent[item].children.splice(index, 1);
     } else {
       parent.splice(index, 1);
     }
   };
-  const closeOrOpenComponent = (parent, item, value) => {
+  const closeOrOpenComponent = (
+    parent: ITree,
+    item: number,
+    value: boolean
+  ) => {
     if (indexes.length) {
       parent[item].children[index].isClose = value;
     } else {
       parent[item].isClose = value;
     }
   };
-  const setName = (parent, item) => {
+  const setName = (parent: ITree, item: number) => {
     if (indexes.length) {
       parent[item].children[index].name = value;
     } else {
       parent[index].name = value;
     }
   };
-  const setType = (parent, item) => {
+  const setType = (parent: ITree, item: number, value: ITypes) => {
     if (indexes.length) {
       parent[item].children[index].type = value;
     } else {
       parent[index].type = value;
     }
   };
+  // @ts-ignore
+  setTree((prevState: ITree) => {
+    const newState: ITree = JSON.parse(JSON.stringify(prevState));
 
-  setArr((prevState) => {
-    const value = JSON.parse(JSON.stringify(prevState));
-
-    (indexes.length ? indexes : [index]).reduce((parent, item, idx) => {
-      if (!idx) parent = value;
-
-      if (idx + 1 === indexes.length || !indexes.length) {
+    function findBrach(parent: ITree, iteratin: number) {
+      if (iteratin + 1 === indexes?.length || !indexes?.length) {
         switch (type) {
           case "add":
-            addComponent(parent, item);
+            addComponent(parent, indexes[iteratin]);
             break;
           case "delete":
-            deleteComponent(parent, item);
+            deleteComponent(parent, iteratin);
             break;
           case "close":
-            closeOrOpenComponent(parent, item, true);
+            closeOrOpenComponent(parent, iteratin, true);
             break;
           case "open":
-            closeOrOpenComponent(parent, item, false);
+            closeOrOpenComponent(parent, iteratin, false);
             break;
           case "setName":
-            setName(parent, item);
+            setName(parent, iteratin);
             break;
           case "setType":
-            setType(parent, item);
+            // @ts-ignore
+            setType(parent, iteratin, value);
             break;
           default:
             break;
         }
         return parent;
       }
+      findBrach(parent[indexes[iteratin]]?.children, ++iteratin);
+    }
+    findBrach(newState, 0);
 
-      return parent[item].children;
-    }, 0);
-    return [...value];
+    return newState;
   });
 };
 
-const Tree = ({ arr, indexes = [], setArr }) => {
-  const changeTreeType = (index, type, value) => {
-    return () => changeTree(setArr, indexes, index, type, value);
+interface ITreeRenerer {
+  tree: ITree;
+  setTree: ISetTree;
+  indexes?: number[];
+}
+
+const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
+  const changeTreeType = (index: number, type: string, value?: string) => {
+    return () => changeTree(setTree, index, type, value, indexes);
   };
   return (
     <>
-      {arr.map((item, index) => {
+      {tree.map((item: ITreeItem, index: number) => {
         if (!item?.children?.length) {
           return (
             <div style={style.block} key={index}>
@@ -144,10 +167,10 @@ const Tree = ({ arr, indexes = [], setArr }) => {
               onClickCloseOrOpen={changeTreeType(index, closeOrOpen)}
             />
             {!item.isClose && (
-              <Tree
-                arr={item.children}
+              <TreeRenerer
+                tree={item.children}
                 indexes={[...indexes, index]}
-                setArr={setArr}
+                setTree={setTree}
               />
             )}
           </div>
@@ -157,4 +180,4 @@ const Tree = ({ arr, indexes = [], setArr }) => {
   );
 };
 
-export default Tree;
+export default TreeRenerer;

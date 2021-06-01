@@ -1,6 +1,18 @@
 import React, { useState } from "react";
-
+import { ITypes } from "../../types";
 const options = [{ name: "component" }, { name: "folder" }, { name: "file" }];
+
+interface IBottomMenu {
+  name?: string;
+  text?: string;
+  type?: ITypes;
+  closeOrOpen?: "open" | "close";
+  setName: (name: string) => void;
+  onChangeType: (type: ITypes) => void;
+  onClickAdd: () => void;
+  onClickDelet?: () => void;
+  onClickCloseOrOpen: () => void;
+}
 
 const BottomMenu = ({
   name,
@@ -12,7 +24,7 @@ const BottomMenu = ({
   onClickAdd,
   onClickDelet,
   onClickCloseOrOpen,
-}) => {
+}: IBottomMenu) => {
   const [openTextEditor, setOpenTextEditor] = useState(false);
   return (
     <>
@@ -23,9 +35,11 @@ const BottomMenu = ({
           {closeOrOpen || "not parent"}
         </button>
         <select
-          onChange={(e) => {
-            onChangeType(e.target.value);
-          }}
+          onChange={(
+            event: React.ChangeEvent<HTMLSelectElement> & {
+              target: { value: ITypes };
+            }
+          ) => onChangeType(event.target.value)}
           value={type || "select"}
         >
           <option value="select" hidden>
