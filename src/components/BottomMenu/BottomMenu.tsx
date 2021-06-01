@@ -31,7 +31,7 @@ const BottomMenu = ({
       <div>
         <button onClick={onClickAdd}>add</button>
         <button onClick={onClickDelet}>delete</button>
-        <button onClick={onClickCloseOrOpen} disabled={!!onClickCloseOrOpen}>
+        <button onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
           {closeOrOpen || "not parent"}
         </button>
         <select

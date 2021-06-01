@@ -81,8 +81,6 @@ const changeTree = (
   };
 
   setTree((prevState: ITree) => {
-    console.log(prevState.length);
-
     const newState: ITree = JSON.parse(JSON.stringify(prevState));
 
     function findBrach(parent: ITree, iteratin: number) {
