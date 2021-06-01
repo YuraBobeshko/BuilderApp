@@ -6,10 +6,15 @@ function App() {
   const [tree, setTree] = useState<ITree>([
     {
       type: "folder",
+      name: "src",
       children: [
         {
+          type: "folder",
+          name: "component",
           children: [
             {
+              type: "folder",
+              name: "UI",
               children: [
                 {
                   children: [],
@@ -18,17 +23,22 @@ function App() {
                   text: "<button></button>",
                 },
                 { children: [], type: "component", name: "Input" },
-                { children: [], type: "component" },
+                { children: [], type: "component", name: "Select" },
               ],
             },
           ],
         },
       ],
     },
-    { type: "folder", children: [{ children: [] }, { children: [] }] },
+    {
+      type: "folder",
+      name: "screen",
+      children: [
+        { type: "file", name: "main", children: [] },
+        { type: "file", name: "singup", children: [] },
+      ],
+    },
   ]);
-
-  console.log("tree", tree);
 
   return (
     <>
