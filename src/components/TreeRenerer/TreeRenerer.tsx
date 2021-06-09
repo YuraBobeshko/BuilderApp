@@ -72,6 +72,13 @@ const changeTree = (
       parent[index].name = value;
     }
   };
+  const setText = (parent: ITree, item: number) => {
+    if (indexes.length) {
+      parent[item].children[index].text = value;
+    } else {
+      parent[index].text = value;
+    }
+  };
   const setType = (parent: ITree, item: number, value: ITypes) => {
     if (indexes.length) {
       parent[item].children[index].type = value;
@@ -100,6 +107,9 @@ const changeTree = (
             break;
           case "setName":
             setName(parent, indexes[iteratin] || 0);
+            break;
+          case "setText":
+            setText(parent, indexes[iteratin] || 0);
             break;
           case "setType":
             // @ts-ignore
@@ -140,6 +150,11 @@ const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
                 text={item.text}
                 name={item?.name || ""}
                 setName={(value) => changeTreeType(index, "setName", value)()}
+                setText={
+                  item.type !== "folder"
+                    ? (value) => changeTreeType(index, "setText", value)()
+                    : undefined
+                }
                 onClickAdd={changeTreeType(index, "add")}
                 onChangeType={(value) =>
                   changeTreeType(index, "setType", value)()
@@ -161,6 +176,11 @@ const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
               text={item.text}
               name={item.name || ""}
               closeOrOpen={closeOrOpen}
+              setText={
+                item.type !== "folder"
+                  ? (value) => changeTreeType(index, "setText", value)()
+                  : undefined
+              }
               setName={(value) => changeTreeType(index, "setName", value)()}
               onClickAdd={changeTreeType(index, "add")}
               onChangeType={(value) =>

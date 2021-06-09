@@ -1,7 +1,7 @@
 export interface ITreeItem {
   type?: ITypes;
   name?: string;
-  text?: string;
+  text?: string | Promise<string>;
   children: ITreeItem[];
   isClose?: boolean;
 }

@@ -32,13 +32,23 @@ function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
     const listFolder = zip.files;
     const tree: ITree = [];
 
-    zip.forEach((element) => {
+    zip.forEach((element, file) => {
       const path = listFolder[element].name.split("/").filter(Boolean);
 
       function createTree(path: string[], tree: ITree) {
         if (!path[0]) return tree;
+
         if (!tree.find((element: ITreeItem) => element.name === path[0])) {
-          tree.push({ name: path[0], children: [] });
+          tree.push({
+            name: path[0],
+            children: [],
+            type: file.dir
+              ? "folder"
+              : file.name.endsWith(".tsx")
+              ? "component"
+              : "file" || "select",
+            text: file.async("string") || "",
+          });
         }
         if (path.length)
           createTree(
@@ -49,8 +59,9 @@ function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
       }
       createTree(path, tree);
     });
-
-    setTree(tree);
+    setTimeout(() => {
+      setTree(tree);
+    }, 500);
   };
 
   reader.readAsDataURL(file);
