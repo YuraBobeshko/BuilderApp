@@ -1,29 +1,44 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { TreeRenerer, StructureCreator, Uploader } from "../../components";
 import { ITree } from "../../types";
 
 function Structure() {
   const [tree, setTree] = useState<ITree>([
     {
+      id: uuidv4(),
       type: "folder",
       name: "src",
       children: [
         {
+          id: uuidv4(),
           type: "folder",
           name: "component",
           children: [
             {
+              id: uuidv4(),
               type: "folder",
               name: "UI",
               children: [
                 {
+                  id: uuidv4(),
                   children: [],
                   type: "component",
                   name: "Button",
                   text: "<button></button>",
                 },
-                { children: [], type: "component", name: "Input" },
-                { children: [], type: "component", name: "Select" },
+                {
+                  id: uuidv4(),
+                  children: [],
+                  type: "component",
+                  name: "Input",
+                },
+                {
+                  id: uuidv4(),
+                  children: [],
+                  type: "component",
+                  name: "Select",
+                },
               ],
             },
           ],
@@ -31,11 +46,12 @@ function Structure() {
       ],
     },
     {
+      id: uuidv4(),
       type: "folder",
       name: "screen",
       children: [
-        { type: "file", name: "main", children: [] },
-        { type: "file", name: "singup", children: [] },
+        { id: uuidv4(), type: "file", name: "main", children: [] },
+        { id: uuidv4(), type: "file", name: "singup", children: [] },
       ],
     },
   ]);

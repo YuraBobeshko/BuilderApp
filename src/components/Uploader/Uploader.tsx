@@ -1,5 +1,6 @@
 import React from "react";
 import JSZip from "jszip";
+import { v4 as uuidv4 } from "uuid";
 import { ITree, ITreeItem, ISetTree } from "../../types";
 
 const Zip = new JSZip();
@@ -40,6 +41,7 @@ function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
 
         if (!tree.find((element: ITreeItem) => element.name === path[0])) {
           tree.push({
+            id: uuidv4(),
             name: path[0],
             children: [],
             type: file.dir

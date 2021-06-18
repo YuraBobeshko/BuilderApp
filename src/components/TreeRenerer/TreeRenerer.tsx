@@ -3,6 +3,7 @@ import React from "react";
 import { BottomMenu } from "../index";
 import style from "./style";
 import { ITree, ITypes, ISetTree, ITreeItem } from "../../types";
+import { v4 as uuidv4 } from "uuid";
 
 const changeTree = <Type,>(
   setTree: ISetTree,
@@ -24,6 +25,7 @@ const changeTree = <Type,>(
     //   if (+typeId === 3) return "file";
     // };
     const element: ITreeItem = {
+      id: uuidv4(),
       children: [],
       name: "",
       type: "select",

@@ -1,18 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
+const listNav = [
+  { name: "ListProject" },
+  { name: "Structure" },
+  { name: "Builder" },
+  { name: "Config" },
+];
 
 const Navigation = () => {
+  let { currentId } = useParams<{ currentId: string | undefined }>();
+
   return (
     <div style={{ display: "flex" }}>
-      <li>
-        <Link to="/structure">Structure</Link>
-      </li>
-      <li>
-        <Link to="/builder">Builder</Link>
-      </li>
-      <li>
-        <Link to="/config">Config</Link>
-      </li>
+      {listNav.map(({ name }) => (
+        <li key={name}>
+          <Link to={`/${name}/${currentId}`}>{name}</Link>
+        </li>
+      ))}
     </div>
   );
 };

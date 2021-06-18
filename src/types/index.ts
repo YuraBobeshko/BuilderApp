@@ -1,4 +1,12 @@
+export interface IProject {
+  id: string;
+  name?: string;
+  structure?: ITree;
+}
+export type IListProject = IProject[];
+
 export interface ITreeItem {
+  id: string;
   type?: ITypes;
   name?: string;
   text?: string | Promise<string>;
