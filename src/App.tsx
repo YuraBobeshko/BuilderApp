@@ -1,9 +1,7 @@
 import React from "react";
-import  BrowserRouter from "./screens/";
+import BrowserRouter from "./screens/BrowserRouter";
 
 function App() {
-
-
   return <BrowserRouter />;
 }
 

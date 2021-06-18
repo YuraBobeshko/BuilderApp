@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Structure from "./structure";
-import Builder from "./builder";
-import Config from "./config";
+import {Structure, Config, Builder} from './'
 import { Navigation } from "../components";
 
 const BrowserRouter = () => {

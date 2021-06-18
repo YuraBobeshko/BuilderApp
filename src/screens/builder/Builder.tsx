@@ -1,7 +1,7 @@
 import React from "react";
 
-const Build = () => {
+const Builder = () => {
   return <div>Build</div>;
 };
 
-export default Build;
+export default Builder;
