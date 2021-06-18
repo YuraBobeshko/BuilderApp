@@ -4,13 +4,16 @@ import { BottomMenu } from "../index";
 import style from "./style";
 import { ITree, ITypes, ISetTree, ITreeItem } from "../../types";
 
-const changeTree = (
+const changeTree = <Type,>(
   setTree: ISetTree,
   index: number,
   type: string,
   value?: string,
   indexes: number[] = [0]
 ) => {
+  // const a: Type = '';
+  // const b: string = a;
+  // console.log(b)
   const addComponent = (parent: ITree, item: number) => {
     // const typeId: string | null =
 
@@ -136,7 +139,7 @@ interface ITreeRenerer {
 
 const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
   const changeTreeType = (index: number, type: string, value?: string) => {
-    return () => changeTree(setTree, index, type, value, indexes);
+    return () => changeTree<string>(setTree, index, type, value, indexes);
   };
   return (
     <>
