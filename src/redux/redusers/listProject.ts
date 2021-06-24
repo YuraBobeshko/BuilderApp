@@ -1,7 +1,10 @@
-import { ListProjectActions } from "../actions";
+import { ListProjectActions, IListProjectActions } from "../actions";
 import { IListProject } from "../../types";
 
-export function ListProjectReducer(state: IListProject = [], action: any) {
+export function ListProjectReducer(
+  state: IListProject = [],
+  action: IListProjectActions
+) {
   switch (action.type) {
     case ListProjectActions.Type.ADD_PROJECT: {
       const { payload } = action;

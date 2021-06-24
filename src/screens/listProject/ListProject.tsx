@@ -11,8 +11,6 @@ const ListProject = () => {
   const listProject = useSelector((state) => state.listProject);
   let history = useHistory();
 
-  console.log(listProject);
-
   return (
     <div>
       <ul>

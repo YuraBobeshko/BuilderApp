@@ -17,7 +17,7 @@ const editProject = (data: IProject) => ({
 });
 const deleteProject = (id: string) => ({
   type: Type.DELETE_PROJECT,
-  payload: id,
+  payload: { id },
 });
 
 export const ListProjectActions = {
@@ -26,3 +26,8 @@ export const ListProjectActions = {
   editProject,
   deleteProject,
 };
+
+export type IListProjectActions =
+  | ReturnType<typeof addProject>
+  | ReturnType<typeof editProject>
+  | ReturnType<typeof deleteProject>;

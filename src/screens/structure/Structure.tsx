@@ -76,8 +76,6 @@ function Structure() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(project);
-
   return (
     <>
       <TreeRenerer tree={tree} setTree={setTree} />
