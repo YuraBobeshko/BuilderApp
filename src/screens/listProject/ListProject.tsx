@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
-import { IListProject } from "../../types";
+import { ListProjectActions } from "../../redux/actions";
 
 const ListProject = () => {
   let { currentId } = useParams<{ currentId: string | undefined }>();
+  const dispatch = useDispatch();
+  const listProject = useSelector((state) => state.listProject);
   let history = useHistory();
-  const [listProject, setListProject] = useState<IListProject>([
-    {
-      id: uuidv4(),
-      name: "Project",
-    },
-  ]);
+
+  console.log(listProject);
+
   return (
     <div>
       <ul>
@@ -29,13 +29,13 @@ const ListProject = () => {
       <input
         onBlur={(e) => {
           e.target.value &&
-            setListProject((prevState) => [
-              ...prevState,
-              {
+            dispatch(
+              ListProjectActions.addProject({
                 id: uuidv4(),
                 name: e.target.value,
-              },
-            ]);
+                structure: [],
+              })
+            );
 
           setTimeout(() => {
             e.target.value = "";

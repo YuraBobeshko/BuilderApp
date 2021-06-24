@@ -1,7 +1,7 @@
 export interface IProject {
   id: string;
   name?: string;
-  structure?: ITree;
+  structure: ITree;
 }
 export type IListProject = IProject[];
 
@@ -16,6 +16,8 @@ export interface ITreeItem {
 
 export type ITree = ITreeItem[];
 
-export type ISetTree = React.Dispatch<React.SetStateAction<ITree>>;
+export type IGetStructure = (prevState: ITree) => ITree;
+
+export type ISetTree = (structure: IGetStructure) => void;
 
 export type ITypes = "component" | "folder" | "file" | "select";

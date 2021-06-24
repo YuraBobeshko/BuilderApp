@@ -62,7 +62,7 @@ function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
       createTree(path, tree);
     });
     setTimeout(() => {
-      setTree(tree);
+      setTree(() => tree);
     }, 500);
   };
 
