@@ -1,5 +1,5 @@
 import React from "react";
-import BrowserRouter from "./screens/BrowserRouter";
+import BrowserRouter from "./router/BrowserRouter";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";

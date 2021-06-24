@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { Structure, Config, Builder, ListProject } from "./";
+import { Structure, Config, Builder, ListProject } from "../screens";
 import { Navigation } from "../components";
 
 const listNav = [
