@@ -24,7 +24,6 @@ const BrowserRouter = () => {
             {componentWraper(component)}
           </Route>
         ))}
-        <Redirect to="/ListProject" />
       </Switch>
     </Router>
   );
