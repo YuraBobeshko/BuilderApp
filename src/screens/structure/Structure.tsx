@@ -14,7 +14,7 @@ function Structure() {
     state.listProject.find((project) => project.id === currentId)
   ) as IProject;
 
-  const tree = project.structure
+  const tree = project.structure;
   function setTree(structure: IGetStructure) {
     dispatch(
       ListProjectActions.editProject({ ...project, structure: structure(tree) })

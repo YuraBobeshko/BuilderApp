@@ -11,13 +11,11 @@ const ListProject = () => {
   const listProject = useSelector((state) => state.listProject);
   let history = useHistory();
   useEffect(() => {
-    if (!listProject.length)
-      getListProject().then((data) => {
-        data && dispatch(ListProjectActions.setListProject(data));
-      });
+    getListProject().then((data) => {
+      data && dispatch(ListProjectActions.setListProject(data));
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(11111);
   return (
     <div>
       <ul>

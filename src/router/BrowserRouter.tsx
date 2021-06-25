@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 import { Structure, Config, Builder, ListProject } from "../screens";
 import { Navigation } from "../components";

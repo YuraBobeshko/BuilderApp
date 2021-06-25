@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { IRootReducer } from "./state";
+import { IRootReducer } from "../../types";
 import { ListProjectReducer } from "./listProject";
 
 declare module "react-redux" {
@@ -8,7 +8,7 @@ declare module "react-redux" {
 }
 
 const rootReducer = combineReducers<IRootReducer>({
-  listProject: ListProjectReducer as any,
+  listProject: ListProjectReducer,
 });
 
 export default rootReducer;
