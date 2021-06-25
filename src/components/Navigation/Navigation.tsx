@@ -9,15 +9,17 @@ const listNav = [
 ];
 
 const Navigation = () => {
-  let { currentId } = useParams<{ currentId: string | undefined }>();
+  const { currentId } = useParams<{ currentId: string | undefined }>();
 
   return (
     <div style={{ display: "flex" }}>
-      {listNav.map(({ name }) => (
-        <li key={name}>
-          <Link to={`/${name}/${currentId}`}>{name}</Link>
-        </li>
-      ))}
+      {currentId
+        ? listNav.map(({ name }) => (
+            <li key={name}>
+              <Link to={`/${name}/${currentId}`}>{name}</Link>
+            </li>
+          ))
+        : null}
     </div>
   );
 };

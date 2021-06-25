@@ -22,11 +22,11 @@ const Uploader = ({ setTree }: IUploader) => {
 };
 
 function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
-  let reader = new FileReader();
+  const reader = new FileReader();
   if (e.currentTarget.files == null) {
     throw new Error("Error finding e.currentTarget.files");
   }
-  let file = e.currentTarget.files[0];
+  const file = e.currentTarget.files[0];
 
   reader.onloadend = async () => {
     const zip = await Zip.loadAsync(file);

@@ -8,7 +8,7 @@ import { ListProjectActions } from "../../redux/actions";
 import { IGetStructure, IProject } from "../../types";
 
 function Structure() {
-  let { currentId } = useParams<{ currentId: string | undefined }>();
+  const { currentId } = useParams<{ currentId: string | undefined }>();
   const dispatch = useDispatch();
   const project = useSelector((state) =>
     state.listProject.find((project) => project.id === currentId)

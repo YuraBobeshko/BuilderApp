@@ -6,10 +6,10 @@ import { getListProject } from "../../redux/thunks";
 import { ListProjectActions } from "../../redux/actions";
 
 const ListProject = () => {
-  let { currentId } = useParams<{ currentId: string | undefined }>();
+  const { currentId } = useParams<{ currentId: string | undefined }>();
   const dispatch = useDispatch();
   const listProject = useSelector((state) => state.listProject);
-  let history = useHistory();
+  const history = useHistory();
   useEffect(() => {
     getListProject().then((data) => {
       data && dispatch(ListProjectActions.setListProject(data));
@@ -22,7 +22,10 @@ const ListProject = () => {
         {listProject.map(({ name, id }) => (
           <li
             key={id}
-            onClick={() => history.push(id)}
+            onClick={() =>
+              history.push(id === currentId ? "/ListProject/" : id)
+            }
+            onContextMenu={() => dispatch(ListProjectActions.deleteProject(id))}
             style={{ color: id === currentId ? "red" : "black" }}
           >
             {name}
