@@ -1,4 +1,4 @@
-import { IListProject } from "./../../types/index";
+import { IListProject } from "../../types";
 import { get, post } from "../../api";
 
 export async function getListProject() {

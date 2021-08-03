@@ -19,6 +19,7 @@ export type ITree = ITreeItem[];
 export type IGetStructure = (prevState: ITree) => ITree;
 
 export type ISetTree = (structure: IGetStructure) => void;
+
 export interface IRootReducer {
   listProject: IListProject;
 }

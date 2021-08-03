@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { getListProject } from "../../redux/thunks";
 import { ListProjectActions } from "../../redux/actions";
 
 const ListProject = () => {
@@ -10,12 +9,7 @@ const ListProject = () => {
   const dispatch = useDispatch();
   const listProject = useSelector((state) => state.listProject);
   const history = useHistory();
-  useEffect(() => {
-    getListProject().then((data) => {
-      data && dispatch(ListProjectActions.setListProject(data));
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   return (
     <div>
       <ul>

@@ -1,11 +1,12 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import { Structure, Config, Builder, ListProject } from "../screens";
+import React, { lazy, Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Config, Builder, ListProject } from "../pages";
 import { Navigation } from "../components";
+import { getListProject } from "../redux/thunks";
+import { ListProjectActions } from "../redux/actions";
+
+const Structure = lazy((): any => import("../pages/structure"));
 
 const listNav = [
   { name: "ListProject", component: ListProject },
@@ -15,20 +16,31 @@ const listNav = [
 ];
 
 const BrowserRouter = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getListProject().then((data) => {
+      data && dispatch(ListProjectActions.setListProject(data));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   return (
     <Router>
-      <Switch>
-        {listNav.map(({ name, component }) => (
-          <Route key={name} path={`/${name}/:currentId?`}>
-            {componentWraper(component)}
-          </Route>
-        ))}
-      </Switch>
+      <Suspense fallback={<p>loading</p>}>
+        <Switch>
+          {listNav.map(({ name, component }) => (
+            <Route key={name} path={`/${name}/:currentId?`}>
+              {componentWrapper(component)}
+            </Route>
+          ))}
+        </Switch>
+      </Suspense>
     </Router>
   );
 };
 
-function componentWraper(Component: React.FC): JSX.Element {
+function componentWrapper(Component: React.FC): JSX.Element {
   return (
     <>
       <Navigation />
