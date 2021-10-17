@@ -5,12 +5,20 @@ import style from "./style";
 import { ITree, ITypes, ISetTree, ITreeItem } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 
-const changeTree = <Type,>(
+export type IChangeTree<T> = (
   setTree: ISetTree,
   index: number,
   type: string,
-  value?: string,
-  indexes: number[] = [0]
+  indexes: number[],
+  value?: T,
+) => any;
+
+const changeTree:IChangeTree<string> = (
+  setTree,
+  index,
+  type,
+  indexes = [0],
+  value,
 ) => {
   // const a: Type = '';
   // const b: string = a;
@@ -141,7 +149,7 @@ interface ITreeRenerer {
 
 const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
   const changeTreeType = (index: number, type: string, value?: string) => {
-    return () => changeTree<string>(setTree, index, type, value, indexes);
+    return () => changeTree(setTree, index, type, indexes, value);
   };
   return (
     <>
