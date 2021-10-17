@@ -10,7 +10,7 @@ interface IBottomMenu {
   setName: (name: string) => void;
   setText?: (name: string) => void;
   onClickAdd: () => void;
-  onClickDelet?: () => void;
+  onClickDelete?: () => void;
   onChangeType: (type: ITypes) => void;
   onClickCloseOrOpen: () => void;
 }
@@ -24,7 +24,7 @@ const BottomMenu = ({
   setText,
   onChangeType,
   onClickAdd,
-  onClickDelet,
+  onClickDelete,
   onClickCloseOrOpen,
 }: IBottomMenu) => {
   const [openTextEditor, setOpenTextEditor] = useState(false);
@@ -42,7 +42,7 @@ const BottomMenu = ({
     <>
       <div>
         <button onClick={onClickAdd}>add</button>
-        <button onClick={onClickDelet}>delete</button>
+        <button onClick={onClickDelete}>delete</button>
         <button onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
           {closeOrOpen || "not parent"}
         </button>

@@ -172,7 +172,7 @@ const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
                 onChangeType={(value) =>
                   changeTreeType(index, "setType", value)()
                 }
-                onClickDelet={changeTreeType(index, "delete")}
+                onClickDelete={changeTreeType(index, "delete")}
                 onClickCloseOrOpen={changeTreeType(index, "close")}
               />
             </div>
@@ -199,7 +199,7 @@ const TreeRenerer = ({ tree, indexes = [], setTree }: ITreeRenerer) => {
               onChangeType={(value) =>
                 changeTreeType(index, "setType", value)()
               }
-              onClickDelet={changeTreeType(index, "delete")}
+              onClickDelete={changeTreeType(index, "delete")}
               onClickCloseOrOpen={changeTreeType(index, closeOrOpen)}
             />
             {!item.isClose && (
