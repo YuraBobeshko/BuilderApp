@@ -1,7 +1,11 @@
 export default function saveAs(blob: Blob, fileName: string) {
+  // @ts-ignore
   if (typeof navigator.msSaveOrOpenBlob !== "undefined") {
+    // @ts-ignore
     return navigator.msSaveOrOpenBlob(blob, fileName);
+    // @ts-ignore
   } else if (typeof navigator.msSaveBlob !== "undefined") {
+    // @ts-ignore
     return navigator.msSaveBlob(blob, fileName);
   } else {
     const elem = window.document.createElement("a");
