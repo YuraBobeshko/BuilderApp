@@ -1,7 +1,7 @@
 import 'jsdom-global/register';
 import BottomMenu, {IBottomMenu} from "./BottomMenu";
 import {mount, shallow} from "enzyme";
-import {act, waitFor} from "@testing-library/react";
+import {act} from "@testing-library/react";
 
 const defaultProps: IBottomMenu = {
     onChangeType: () => {
@@ -101,7 +101,7 @@ describe("BottomMenu component", () => {
         const component = setUpMount({setText: mockCallBack})
         component.find('.setText').simulate('click')
         await act(async() => {
-            await  component.setProps({text: Promise.resolve(value)});
+            await component.setProps({text: Promise.resolve(value)});
         })
         await act(async () => {
             await component.update();

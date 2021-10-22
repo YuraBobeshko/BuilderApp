@@ -1,12 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-
-const listNav = [
-  { name: "ListProject" },
-  { name: "Structure" },
-  { name: "Builder" },
-  { name: "Config" },
-];
+import {listNav} from "../../../config";
 
 const Navigation = () => {
   const { currentId } = useParams<{ currentId: string | undefined }>();

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation component should render Navigation component with currentId 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+    }
+  }
+>
+  <li
+    key="ListProject"
+  >
+    <Link
+      to="/ListProject/1111"
+    >
+      ListProject
+    </Link>
+  </li>
+  <li
+    key="Structure"
+  >
+    <Link
+      to="/Structure/1111"
+    >
+      Structure
+    </Link>
+  </li>
+  <li
+    key="Builder"
+  >
+    <Link
+      to="/Builder/1111"
+    >
+      Builder
+    </Link>
+  </li>
+  <li
+    key="Config"
+  >
+    <Link
+      to="/Config/1111"
+    >
+      Config
+    </Link>
+  </li>
+</div>
+`;
+
+exports[`Navigation component should render Navigation component without currentId 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+    }
+  }
+/>
+`;
