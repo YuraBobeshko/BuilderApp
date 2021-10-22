@@ -17,7 +17,7 @@ const ListProject = () => {
           <li
             key={id}
             onClick={() =>
-              history.push(id === currentId ? "/ListProject/" : id)
+              history.push(id === currentId ? "/ListProject/" : '/ListProject/' + id)
             }
             onContextMenu={() => dispatch(ListProjectActions.deleteProject(id))}
             style={{ color: id === currentId ? "red" : "black" }}
