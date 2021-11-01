@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import { Config, Builder, ListProject } from "../pages";
 import { Navigation } from "../components";
 import { getListProject } from "../redux/thunks";
@@ -24,7 +24,7 @@ const BrowserRouter = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   return (
     <Router>
       <Suspense fallback={<p>loading</p>}>
@@ -34,6 +34,7 @@ const BrowserRouter = () => {
               {componentWrapper(component)}
             </Route>
           ))}
+          <Redirect to={'/ListProject'} from={'/'} />
         </Switch>
       </Suspense>
     </Router>

@@ -7,7 +7,7 @@ interface IUploader {
 }
 
 const Uploader = ({ setTree }: IUploader) => {
-  return (
+    return (
     <div>
       <input
         className="fileInput"

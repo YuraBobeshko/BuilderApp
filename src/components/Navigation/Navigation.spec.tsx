@@ -5,24 +5,22 @@ import { useParams } from "react-router-dom";
 
 const currentId = { currentId: '1111' }
 
-let mockCallback = jest.fn(() => currentId)
-
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
-    useParams: jest.fn(() => currentId),
+    useParams: () => currentId,
 }))
 
 const setUp = () => shallow(<Navigation />);
 
 
-describe('Navigation component', () => {
+describe('Input component', () => {
 
-    it('should render Navigation component with currentId', () => {
+    it('should render Input component with currentId', () => {
         let component = setUp();
         expect(component).toMatchSnapshot();
     })
 
-    it('should render Navigation component without currentId', () => {
+    it('should render Input component without currentId', () => {
         // @ts-ignore
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         useParams = () => ({

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navigation component should render Navigation component with currentId 1`] = `
+exports[`Input component should render Input component with currentId 1`] = `
 <div
   style={
     Object {
@@ -47,7 +47,7 @@ exports[`Navigation component should render Navigation component with currentId 
 </div>
 `;
 
-exports[`Navigation component should render Navigation component without currentId 1`] = `
+exports[`Input component should render Input component without currentId 1`] = `
 <div
   style={
     Object {

@@ -38,7 +38,6 @@ const setUpMount = (props?: Partial<IBottomMenu>) => mount(
     />
 );
 
-
 describe("BottomMenu component", () => {
     let component = setUp();
     beforeEach(() => {
@@ -86,7 +85,7 @@ describe("BottomMenu component", () => {
     it("should set text as string", () => {
         const mockCallBack = jest.fn()
         const component = setUpMount({setText: mockCallBack})
-        component.find('.setText').simulate('click')
+        component.find('Button.setText').simulate('click')
         const textarea = () => component.find('.text');
 
         textarea().simulate('change', args())
@@ -99,7 +98,7 @@ describe("BottomMenu component", () => {
     it("should set text as promise", async () => {
         const mockCallBack = jest.fn()
         const component = setUpMount({setText: mockCallBack})
-        component.find('.setText').simulate('click')
+        component.find('Button.setText').simulate('click')
         await act(async() => {
             await component.setProps({text: Promise.resolve(value)});
         })
@@ -128,12 +127,12 @@ describe("BottomMenu component", () => {
         })
 
         it("should render button setText", () => {
-            expect(component.find('.setText').length).toBe(1)
+            expect(component.find('Button.setText').length).toBe(1)
         });
 
         it("should show textarea after click on btn.setTest", () => {
             expect(mockCallBack.mock.calls.length).toBe(0)
-            component.find('.setText').simulate('click')
+            component.find('Button.setText').simulate('click')
             expect(component).toMatchSnapshot()
         });
     })

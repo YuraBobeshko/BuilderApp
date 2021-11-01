@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ITypes } from "../../types";
+import Button from "../UI/Button";
 const options = [{ name: "component" }, { name: "folder" }, { name: "file" }];
 
 export interface IBottomMenu {
@@ -15,7 +16,7 @@ export interface IBottomMenu {
   onClickCloseOrOpen: () => void;
 }
 
-const BottomMenu = ({
+const BottomMenu = React.memo( ({
   name,
   text,
   type,
@@ -44,11 +45,11 @@ const BottomMenu = ({
   return (
     <>
       <div>
-        <button className='add' onClick={onClickAdd}>add</button>
-        <button className='delete' onClick={onClickDelete}>delete</button>
-        <button className='closeOrOpen' onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
+        <Button className='add' onClick={onClickAdd}>add</Button>
+        <Button className='delete' onClick={onClickDelete}>delete</Button>
+        <Button className='closeOrOpen' onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
           {closeOrOpen || "not parent"}
-        </button>
+        </Button>
         <select
           className='selectType'
           onChange={(
@@ -68,9 +69,9 @@ const BottomMenu = ({
           ))}
         </select>
         {setText && (
-          <button className='setText' onClick={() => setOpenTextEditor(!openTextEditor)}>
+          <Button className='setText' onClick={() => setOpenTextEditor(!openTextEditor)}>
             {openTextEditor ? "closeTextEditor" : "openTextEditor"}
-          </button>
+          </Button>
         )}
         <input className='name' value={name} onChange={(e) => setName(e.target.value)} />
       </div>
@@ -84,6 +85,6 @@ const BottomMenu = ({
       )}
     </>
   );
-};
+});
 
 export default BottomMenu;

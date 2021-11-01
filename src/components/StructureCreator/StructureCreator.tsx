@@ -2,6 +2,7 @@ import React from "react";
 import JSZip from "jszip";
 import { saveAs } from "../../utils";
 import { ITree, ITreeItem } from "../../types/";
+import Button from "../UI/Button";
 
 const Zip = new JSZip();
 
@@ -13,7 +14,7 @@ const StructureCreator = ({ tree }: IStructureCreator) => {
   return (
     <div>
       StructureCreator
-      <button onClick={() => download(tree)}>download</button>
+      <Button onClick={() => download(tree)}>download</Button>
     </div>
   );
 };

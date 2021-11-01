@@ -3,24 +3,24 @@
 exports[`BottomMenu component logics work with setText should show textarea after click on btn.setTest 1`] = `
 <Fragment>
   <div>
-    <button
+    <Button
       className="add"
       onClick={[Function]}
     >
       add
-    </button>
-    <button
+    </Button>
+    <Button
       className="delete"
     >
       delete
-    </button>
-    <button
+    </Button>
+    <Button
       className="closeOrOpen"
       disabled={true}
       onClick={[Function]}
     >
       not parent
-    </button>
+    </Button>
     <select
       className="selectType"
       onChange={[Function]}
@@ -51,52 +51,41 @@ exports[`BottomMenu component logics work with setText should show textarea afte
         file
       </option>
     </select>
-    <button
+    <Button
       className="setText"
       onClick={[Function]}
     >
-      closeTextEditor
-    </button>
+      openTextEditor
+    </Button>
     <input
       className="name"
       onChange={[Function]}
     />
   </div>
-  <textarea
-    className="text"
-    onChange={[Function]}
-    style={
-      Object {
-        "height": 200,
-        "width": 500,
-      }
-    }
-    value=""
-  />
 </Fragment>
 `;
 
 exports[`BottomMenu component should shallow with max count of props 1`] = `
 <Fragment>
   <div>
-    <button
+    <Button
       className="add"
       onClick={[Function]}
     >
       add
-    </button>
-    <button
+    </Button>
+    <Button
       className="delete"
     >
       delete
-    </button>
-    <button
+    </Button>
+    <Button
       className="closeOrOpen"
       disabled={false}
       onClick={[Function]}
     >
       open
-    </button>
+    </Button>
     <select
       className="selectType"
       onChange={[Function]}
@@ -139,24 +128,24 @@ exports[`BottomMenu component should shallow with max count of props 1`] = `
 exports[`BottomMenu component should shallow with min count of props 1`] = `
 <Fragment>
   <div>
-    <button
+    <Button
       className="add"
       onClick={[Function]}
     >
       add
-    </button>
-    <button
+    </Button>
+    <Button
       className="delete"
     >
       delete
-    </button>
-    <button
+    </Button>
+    <Button
       className="closeOrOpen"
       disabled={true}
       onClick={[Function]}
     >
       not parent
-    </button>
+    </Button>
     <select
       className="selectType"
       onChange={[Function]}
