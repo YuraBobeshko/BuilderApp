@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import {ISetTree, ITree} from "../../types";
-import {v4 as uuidv4} from "uuid";
+import {v4 as getId} from "uuid";
 import Zip, {JSZipObject} from "jszip";
 
 export default function parser(e: ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
@@ -23,7 +23,7 @@ export default function parser(e: ChangeEvent<HTMLInputElement>, setTree: ISetTr
                 if (!path[0]) return tree;
                 if (!tree.find((element) => element?.name === path[0])) {
                     tree.push({
-                        id: uuidv4(),
+                        id: getId(),
                         name: path[0],
                         children: [],
                         type: file.dir
@@ -37,8 +37,7 @@ export default function parser(e: ChangeEvent<HTMLInputElement>, setTree: ISetTr
                 if (path.length) {
                     createTree(
                         path.slice(1),
-                        tree?.find((element) => element?.name === path[0])
-                            ?.children || []
+                        tree?.find((element) => element?.name === path[0])?.children || []
                     );
                 }
             }

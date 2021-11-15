@@ -8,6 +8,8 @@ export const listNav = [
     { name: "Config" },
 ];
 
+export const options = [{ name: "component" }, { name: "folder" }, { name: "file" }];
+
 export const defaultTree: ITree = [
     {
         id: uuidv4(),

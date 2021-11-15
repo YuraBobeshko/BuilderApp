@@ -2,7 +2,7 @@ import React from "react";
 import { ISetTree } from "../../types";
 import parser from "./parser";
 
-interface IUploader {
+export interface IUploader {
   setTree: ISetTree;
 }
 

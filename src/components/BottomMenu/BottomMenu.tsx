@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { options } from "../../constants";
 import { ITypes } from "../../types";
 import Button from "../UI/Button";
-const options = [{ name: "component" }, { name: "folder" }, { name: "file" }];
 
 export interface IBottomMenu {
   name?: string;
