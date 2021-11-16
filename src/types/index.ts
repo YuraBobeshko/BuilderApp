@@ -24,5 +24,6 @@ export interface IRootReducer {
   listProject: IListProject;
 }
 
+export type ID = string | number
 
 export type ITypes = "component" | "folder" | "file" | "select";

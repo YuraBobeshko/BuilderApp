@@ -10,7 +10,7 @@ interface IStructureCreator {
   tree: ITree;
 }
 
-const StructureCreator = ({ tree }: IStructureCreator) => {
+const Downloader = ({ tree }: IStructureCreator) => {
   return (
     <div>
       StructureCreator
@@ -42,4 +42,4 @@ async function download(tree: ITree) {
   if (content) saveAs(content, "example.zip");
 }
 
-export default StructureCreator;
+export default Downloader;

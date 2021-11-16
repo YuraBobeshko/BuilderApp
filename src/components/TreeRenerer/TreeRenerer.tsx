@@ -180,7 +180,7 @@ function TreeItem({indexes = [], index, name, prop4, onChangeType, onClickDelete
     </div>;
 }
 
-const TreeRenerer = React.memo(({tree, indexes = [], setTree}: ITreeRenerer) => {
+const TreeRenerer =({tree, indexes = [], setTree}: ITreeRenerer) => {
     const changeTreeType = (index: number, type: string, value?: string) => {
         return () => changeTree(setTree, index, type, indexes, value);
     };
@@ -238,17 +238,6 @@ const TreeRenerer = React.memo(({tree, indexes = [], setTree}: ITreeRenerer) => 
             })}
         </>
     );
-}, (a, b) => {
-    let areEqual = true
-    console.log(a, b)
-    console.log(a.indexes === b.indexes)
-    console.log(a.tree === b.tree)
-    if (a.indexes && b.indexes)
-        areEqual = a.indexes.every((item, index) => item === b.indexes?.at(index))
-    // if(a.indexes && b.indexes)
-    //  const resA = a.tree.find()
-
-    return areEqual
-});
+}
 
 export default TreeRenerer;

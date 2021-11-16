@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import { Config, Builder, ListProject } from "../pages";
 import { Navigation } from "../components";
 import { getListProject } from "../redux/thunks";
-import { ListProjectActions } from "../redux/actions";
 
 const Structure = lazy((): any => import("../pages/structure"));
 
@@ -16,14 +15,12 @@ const listNav = [
 ];
 
 const BrowserRouter = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    getListProject().then((data) => {
-      data && dispatch(ListProjectActions.setListProject(data));
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    useEffect(() => {
+        getListProject(dispatch).then()
+    }, [dispatch]);
+
 
   return (
     <Router>

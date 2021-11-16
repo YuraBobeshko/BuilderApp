@@ -31,7 +31,6 @@ describe('Uploader component', () => {
         const value = {target: { value: 1 }}
         const input = component.find('.fileInput')
         input.simulate('change', value)
-        console.log(111111111111111, mockCallBack.mock);
         expect(mockCallBack.mock.calls[0][0]).toEqual(value)
     })
 })

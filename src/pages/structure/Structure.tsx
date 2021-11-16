@@ -2,10 +2,10 @@ import React, {useCallback, useEffect, useMemo} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 
-import {TreeRenerer, StructureCreator, Uploader} from "../../components";
-import {ListProjectActions} from "../../redux/actions";
+import {TreeRenerer, Downloader, Uploader} from "../../components";
 import {IGetStructure, IProject} from "../../types";
 import {defaultTree} from "../../constants";
+import {updateListProject} from "../../redux/thunks";
 
 function Structure() {
     const {currentId} = useParams<{ currentId: string | undefined }>();
@@ -22,13 +22,12 @@ function Structure() {
     );
     const setTree = useCallback(
         (structure: IGetStructure) => {
-            dispatch(
-                ListProjectActions.editProject({...project, structure: structure(tree)})
-            );
+            updateListProject(dispatch,{...project, structure: structure(tree)}).then()
         }
         ,
         [dispatch, project, tree],
     );
+
     useEffect(() => {
         setTree(() => defaultTree);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,7 +37,7 @@ function Structure() {
     return (
         <>
             <TreeRenerer tree={tree} setTree={setTree}/>
-            <StructureCreator tree={tree}/>
+            <Downloader tree={tree}/>
             <Uploader setTree={setTree}/>
         </>
     );
