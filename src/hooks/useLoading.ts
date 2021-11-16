@@ -16,7 +16,7 @@ function useLoading <T>(callBack: Promise<T>):IUseLoading<T> {
             .then((res: T) => setData(res))
             .catch(() => setError('Error!'))
             .finally(() => setLoading(false))
-    }, []);
+    }, [callBack]);
 
     return {data, error, loading}
 }

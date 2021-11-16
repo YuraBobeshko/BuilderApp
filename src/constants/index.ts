@@ -61,3 +61,5 @@ export const defaultTree: ITree = [
         ],
     },
 ]
+
+export const defaultProject = {id: 1, name: 'test', structure: defaultTree}

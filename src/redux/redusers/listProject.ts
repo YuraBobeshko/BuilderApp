@@ -1,4 +1,4 @@
-import { ListProjectActions, IListProjectActions } from "../actions";
+import { ListProjectActions, IListProjectActions } from "../actions/listProject";
 import { IListProject } from "../../types";
 
 export function ListProjectReducer(

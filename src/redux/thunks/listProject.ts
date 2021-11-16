@@ -1,6 +1,6 @@
 import {ID, IListProject, IProject} from "../../types";
 import { get, post, put, deleteApi } from "../../api";
-import {ListProjectActions} from "../actions";
+import {ListProjectActions} from "../actions/listProject";
 import {AppDispatch} from "../store";
 
 export async function getListProject(dispatch: AppDispatch) {
@@ -11,9 +11,7 @@ export async function getListProject(dispatch: AppDispatch) {
 
 export async function setListProject(dispatch: AppDispatch, data: IListProject) {
   const res = await post<IListProject>("/ListProject", data);
-
   if(res) dispatch(ListProjectActions.setListProject(res));
-
   return res;
 }
 
