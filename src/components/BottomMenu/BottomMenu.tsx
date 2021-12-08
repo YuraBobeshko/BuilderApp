@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { options } from "../../constants";
 import { ITypes } from "../../types";
-const options = [{ name: "component" }, { name: "folder" }, { name: "file" }];
+import Button from "../UI/Button";
 
-interface IBottomMenu {
+export interface IBottomMenu {
   name?: string;
   text?: string | Promise<string>;
   type?: ITypes;
@@ -10,12 +11,12 @@ interface IBottomMenu {
   setName: (name: string) => void;
   setText?: (name: string) => void;
   onClickAdd: () => void;
-  onClickDelet?: () => void;
+  onClickDelete?: () => void;
   onChangeType: (type: ITypes) => void;
   onClickCloseOrOpen: () => void;
 }
 
-const BottomMenu = ({
+const BottomMenu = React.memo( ({
   name,
   text,
   type,
@@ -24,29 +25,33 @@ const BottomMenu = ({
   setText,
   onChangeType,
   onClickAdd,
-  onClickDelet,
+  onClickDelete,
   onClickCloseOrOpen,
 }: IBottomMenu) => {
   const [openTextEditor, setOpenTextEditor] = useState(false);
   const [textRes, setTextRes] = useState("");
-  useEffect(() => {
-    if (setText)
-      if (text instanceof Promise) {
-        text.then((data) => setTextRes(data));
-      } else if (text) {
-        setTextRes(text);
-      }
+  useEffect( () => {
+     (async () => {
+      if (setText)
+        if (text instanceof Promise) {
+          const data = await text;
+          setTextRes(data || '');
+        } else if (text) {
+          setTextRes(text);
+        }
+    })()
   }, [openTextEditor, text, setText]);
 
   return (
     <>
       <div>
-        <button onClick={onClickAdd}>add</button>
-        <button onClick={onClickDelet}>delete</button>
-        <button onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
+        <Button className='add' onClick={onClickAdd}>add</Button>
+        <Button className='delete' onClick={onClickDelete}>delete</Button>
+        <Button className='closeOrOpen' onClick={onClickCloseOrOpen} disabled={!closeOrOpen}>
           {closeOrOpen || "not parent"}
-        </button>
+        </Button>
         <select
+          className='selectType'
           onChange={(
             event: React.ChangeEvent<HTMLSelectElement> & {
               target: { value: ITypes };
@@ -64,14 +69,15 @@ const BottomMenu = ({
           ))}
         </select>
         {setText && (
-          <button onClick={() => setOpenTextEditor(!openTextEditor)}>
+          <Button className='setText' onClick={() => setOpenTextEditor(!openTextEditor)}>
             {openTextEditor ? "closeTextEditor" : "openTextEditor"}
-          </button>
+          </Button>
         )}
-        <input value={name} onChange={(e) => setName(e.target.value)} />
+        <input className='name' value={name} onChange={(e) => setName(e.target.value)} />
       </div>
       {openTextEditor && setText && (
         <textarea
+          className='text'
           onChange={(e) => setText(e.target.value)}
           value={textRes}
           style={{ width: 500, height: 200 }}
@@ -79,6 +85,6 @@ const BottomMenu = ({
       )}
     </>
   );
-};
+});
 
 export default BottomMenu;

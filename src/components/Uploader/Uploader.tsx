@@ -1,72 +1,23 @@
 import React from "react";
-import JSZip from "jszip";
-import { v4 as uuidv4 } from "uuid";
-import { ITree, ITreeItem, ISetTree } from "../../types";
+import { ISetTree } from "../../types";
+import parser from "./parser";
 
-const Zip = new JSZip();
-
-interface IUploader {
+export interface IUploader {
   setTree: ISetTree;
 }
 
 const Uploader = ({ setTree }: IUploader) => {
-  return (
+    return (
     <div>
       <input
         className="fileInput"
         type="file"
-        onChange={(e) => onChange(e, setTree)}
+        onChange={(e) => parser(e, setTree)}
       />
     </div>
   );
 };
 
-function onChange(e: React.ChangeEvent<HTMLInputElement>, setTree: ISetTree) {
-  const reader = new FileReader();
-  if (e.currentTarget.files == null) {
-    throw new Error("Error finding e.currentTarget.files");
-  }
-  const file = e.currentTarget.files[0];
 
-  reader.onloadend = async () => {
-    const zip = await Zip.loadAsync(file);
-    const listFolder = zip.files;
-    const tree: ITree = [];
-
-    zip.forEach((element, file) => {
-      const path = listFolder[element].name.split("/").filter(Boolean);
-
-      function createTree(path: string[], tree: ITree) {
-        if (!path[0]) return tree;
-
-        if (!tree.find((element: ITreeItem) => element.name === path[0])) {
-          tree.push({
-            id: uuidv4(),
-            name: path[0],
-            children: [],
-            type: file.dir
-              ? "folder"
-              : file.name.endsWith(".tsx")
-              ? "component"
-              : "file" || "select",
-            text: file.async("string") || "",
-          });
-        }
-        if (path.length)
-          createTree(
-            path.slice(1),
-            tree?.find((element: ITreeItem) => element?.name === path[0])
-              ?.children || []
-          );
-      }
-      createTree(path, tree);
-    });
-    setTimeout(() => {
-      setTree(() => tree);
-    }, 500);
-  };
-
-  reader.readAsDataURL(file);
-}
 
 export default Uploader;

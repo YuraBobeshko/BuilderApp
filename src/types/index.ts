@@ -1,5 +1,5 @@
 export interface IProject {
-  id: string;
+  id: ID;
   name?: string;
   structure: ITree;
 }
@@ -22,7 +22,9 @@ export type ISetTree = (structure: IGetStructure) => void;
 
 export interface IRootReducer {
   listProject: IListProject;
+  currentProject: IProject;
 }
 
+export type ID = string | number
 
 export type ITypes = "component" | "folder" | "file" | "select";

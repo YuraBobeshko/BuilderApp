@@ -2,6 +2,7 @@ import React from "react";
 import JSZip from "jszip";
 import { saveAs } from "../../utils";
 import { ITree, ITreeItem } from "../../types/";
+import Button from "../UI/Button";
 
 const Zip = new JSZip();
 
@@ -9,11 +10,11 @@ interface IStructureCreator {
   tree: ITree;
 }
 
-const StructureCreator = ({ tree }: IStructureCreator) => {
+const Downloader = ({ tree }: IStructureCreator) => {
   return (
     <div>
       StructureCreator
-      <button onClick={() => download(tree)}>download</button>
+      <Button onClick={() => download(tree)}>download</Button>
     </div>
   );
 };
@@ -41,4 +42,4 @@ async function download(tree: ITree) {
   if (content) saveAs(content, "example.zip");
 }
 
-export default StructureCreator;
+export default Downloader;

@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomMenu component logics work with setText should show textarea after click on btn.setTest 1`] = `
+<Fragment>
+  <div>
+    <Button
+      className="add"
+      onClick={[Function]}
+    >
+      add
+    </Button>
+    <Button
+      className="delete"
+    >
+      delete
+    </Button>
+    <Button
+      className="closeOrOpen"
+      disabled={true}
+      onClick={[Function]}
+    >
+      not parent
+    </Button>
+    <select
+      className="selectType"
+      onChange={[Function]}
+      value="select"
+    >
+      <option
+        hidden={true}
+        value="select"
+      >
+        select
+      </option>
+      <option
+        key="component"
+        value="component"
+      >
+        component
+      </option>
+      <option
+        key="folder"
+        value="folder"
+      >
+        folder
+      </option>
+      <option
+        key="file"
+        value="file"
+      >
+        file
+      </option>
+    </select>
+    <Button
+      className="setText"
+      onClick={[Function]}
+    >
+      openTextEditor
+    </Button>
+    <input
+      className="name"
+      onChange={[Function]}
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`BottomMenu component should shallow with max count of props 1`] = `
+<Fragment>
+  <div>
+    <Button
+      className="add"
+      onClick={[Function]}
+    >
+      add
+    </Button>
+    <Button
+      className="delete"
+    >
+      delete
+    </Button>
+    <Button
+      className="closeOrOpen"
+      disabled={false}
+      onClick={[Function]}
+    >
+      open
+    </Button>
+    <select
+      className="selectType"
+      onChange={[Function]}
+      value="file"
+    >
+      <option
+        hidden={true}
+        value="select"
+      >
+        select
+      </option>
+      <option
+        key="component"
+        value="component"
+      >
+        component
+      </option>
+      <option
+        key="folder"
+        value="folder"
+      >
+        folder
+      </option>
+      <option
+        key="file"
+        value="file"
+      >
+        file
+      </option>
+    </select>
+    <input
+      className="name"
+      onChange={[Function]}
+      value="g"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`BottomMenu component should shallow with min count of props 1`] = `
+<Fragment>
+  <div>
+    <Button
+      className="add"
+      onClick={[Function]}
+    >
+      add
+    </Button>
+    <Button
+      className="delete"
+    >
+      delete
+    </Button>
+    <Button
+      className="closeOrOpen"
+      disabled={true}
+      onClick={[Function]}
+    >
+      not parent
+    </Button>
+    <select
+      className="selectType"
+      onChange={[Function]}
+      value="select"
+    >
+      <option
+        hidden={true}
+        value="select"
+      >
+        select
+      </option>
+      <option
+        key="component"
+        value="component"
+      >
+        component
+      </option>
+      <option
+        key="folder"
+        value="folder"
+      >
+        folder
+      </option>
+      <option
+        key="file"
+        value="file"
+      >
+        file
+      </option>
+    </select>
+    <input
+      className="name"
+      onChange={[Function]}
+    />
+  </div>
+</Fragment>
+`;

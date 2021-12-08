@@ -1,6 +1,5 @@
-import { ListProjectActions, IListProjectActions } from "../actions";
+import { ListProjectActions, IListProjectActions } from "../actions/listProject";
 import { IListProject } from "../../types";
-import { setListProject } from "../thunks";
 
 export function ListProjectReducer(
   state: IListProject = [],
@@ -10,7 +9,6 @@ export function ListProjectReducer(
     case ListProjectActions.Type.ADD_PROJECT: {
       const { payload } = action;
       const value = [...state, payload];
-      setListProject(value);
       return value;
     }
 
@@ -26,14 +24,12 @@ export function ListProjectReducer(
           project.id === payload.id ? payload : project
         ),
       ];
-      setListProject(value);
       return value;
     }
 
     case ListProjectActions.Type.DELETE_PROJECT: {
       const { payload } = action;
       const value = [...state.filter((project) => project.id !== payload.id)];
-      setListProject(value);
       return value;
     }
 
