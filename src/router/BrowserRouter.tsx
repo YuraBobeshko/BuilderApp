@@ -18,7 +18,7 @@ const BrowserRouter = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getListProject(dispatch).then()
+        getListProject(dispatch)
     }, [dispatch]);
 
 

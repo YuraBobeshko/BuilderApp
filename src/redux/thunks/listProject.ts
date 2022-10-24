@@ -5,6 +5,7 @@ import {AppDispatch} from "../store";
 
 export async function getListProject(dispatch: AppDispatch) {
   const data = await get<IListProject>("/ListProject");
+  
   if(data) dispatch(ListProjectActions.setListProject(data));
   return data;
 }

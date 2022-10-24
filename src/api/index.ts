@@ -10,7 +10,8 @@ export async function post<Type>(url: string, data: Type): Promise<Type> {
 }
 
 export async function put<Type>(url: string, data: Type): Promise<Type[]> {
- const res = await JSON.parse(localStorage.getItem(url) || '')
+  // fix it
+ const res = await JSON.parse(localStorage.getItem(url) || '[]')
   // @ts-ignore
   const arr = [...res.filter((item: Type) => data?.id !== item?.id), data]
   await localStorage.setItem(url, JSON.stringify(arr));

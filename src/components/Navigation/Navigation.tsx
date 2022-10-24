@@ -6,7 +6,7 @@ const Navigation = () => {
   const { currentId } = useParams<{ currentId: string | undefined }>();
 
   return (
-    <div style={{ display: "flex" }}>
+    <nav style={{ display: "flex" }}>
       {currentId
         ? listNav.map(({ name }) => (
             <li key={name}>
@@ -14,7 +14,7 @@ const Navigation = () => {
             </li>
           ))
         : null}
-    </div>
+    </nav>
   );
 };
 
